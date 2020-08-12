@@ -12,6 +12,10 @@ const App = () => {
   const neutralUp = () => setNeutral(neutral + 1);
   const badUp = () => setBad(bad + 1);
 
+  const total = good + bad + neutral;
+
+  const avg = total > 0 ? (good - bad) / total : 0;
+  const positive = total > 0 ? good / total : 0;
   return (
     <div>
       <Header text='Give feedback'></Header>
@@ -20,9 +24,12 @@ const App = () => {
       <Button handleClick={badUp} text='Bad'></Button>
 
       <Header text='Statistics'></Header>
-      <Stat name='Good:' number={good}></Stat>
-      <Stat name='Neutral:' number={neutral}></Stat>
-      <Stat name='Bad:' number={bad}></Stat>
+      <Stat name='Good:' value={good}></Stat>
+      <Stat name='Neutral:' value={neutral}></Stat>
+      <Stat name='Bad:' value={bad}></Stat>
+      <Stat name='All:' value={total}></Stat>
+      <Stat name='Average:' value={avg}></Stat>
+      <Stat name='Positive:' value={positive + " %"}></Stat>
     </div>
   );
 };
@@ -31,9 +38,9 @@ const Header = ({ text }) => {
   return <h1>{text}</h1>;
 };
 
-const Stat = ({ name, number }) => (
+const Stat = ({ name, value }) => (
   <p>
-    {name} {number}
+    {name} {value}
   </p>
 );
 
