@@ -12,25 +12,43 @@ const App = () => {
   const neutralUp = () => setNeutral(neutral + 1);
   const badUp = () => setBad(bad + 1);
 
-  const total = good + bad + neutral;
-
-  const avg = total > 0 ? (good - bad) / total : 0;
-  const positive = total > 0 ? good / total : 0;
   return (
     <div>
       <Header text='Give feedback'></Header>
       <Button handleClick={goodUp} text='Good'></Button>
       <Button handleClick={neutralUp} text='Neutral'></Button>
       <Button handleClick={badUp} text='Bad'></Button>
-
-      <Header text='Statistics'></Header>
-      <Stat name='Good:' value={good}></Stat>
-      <Stat name='Neutral:' value={neutral}></Stat>
-      <Stat name='Bad:' value={bad}></Stat>
-      <Stat name='All:' value={total}></Stat>
-      <Stat name='Average:' value={avg}></Stat>
-      <Stat name='Positive:' value={positive + " %"}></Stat>
+      <Statistics good={good} bad={bad} neutral={neutral}></Statistics>
     </div>
+  );
+};
+
+const Statistics = ({ good, bad, neutral }) => {
+  const total = good + bad + neutral;
+
+  if (total == 0) {
+    return <p>No feedback given.</p>;
+  }
+
+  const avg = total > 0 ? (good - bad) / total : 0;
+  const positive = total > 0 ? good / total : 0;
+
+  return (
+    <table>
+      <Header text='Statistics'></Header>
+
+      <Stat name='Good:' value={good}></Stat>
+
+      <Stat name='Neutral:' value={neutral}></Stat>
+
+      <Stat name='Bad:' value={bad}></Stat>
+
+      <Stat name='All:' value={total}></Stat>
+
+      <Stat name='Average:' value={avg}></Stat>
+
+      <Stat name='Positive:' value={positive + " %"}></Stat>
+    </table>
   );
 };
 
@@ -39,9 +57,10 @@ const Header = ({ text }) => {
 };
 
 const Stat = ({ name, value }) => (
-  <p>
-    {name} {value}
-  </p>
+  <tr>
+    <th scope='row'>{name}</th>
+    <td>{value}</td>
+  </tr>
 );
 
 const Button = ({ handleClick, text }) => (
