@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-
+import { Button } from "@material-ui/core";
+import "fontsource-roboto";
 const App = (props) => {
   const [selected, setSelected] = useState(0);
   const [points, setPoints] = useState({
@@ -42,10 +43,10 @@ const App = (props) => {
         <thead>
           <tr>
             <td>
-              <Button handleClick={handleVote} text='Vote'></Button>
+              <Button1 handleClick={handleVote} text='Vote'></Button1>
             </td>
             <td>
-              <Button handleClick={setRandomQuote} text='New quote'></Button>
+              <Button1 handleClick={setRandomQuote} text='New quote'></Button1>
             </td>
           </tr>
         </thead>
@@ -58,8 +59,10 @@ const App = (props) => {
   );
 };
 
-const Button = ({ handleClick, text }) => (
-  <button onClick={handleClick}>{text}</button>
+const Button1 = ({ handleClick, text }) => (
+  <Button variant='contained' color='primary' onClick={handleClick}>
+    {text}
+  </Button>
 );
 const anecdotes = [
   "If it hurts, do it more often",
