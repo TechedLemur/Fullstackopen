@@ -1,5 +1,6 @@
 import React from "react";
 import DetailedCountry from "./DetailedCountry";
+import Country from "./Country";
 
 const Countries = (props) => {
   const res = props.countries.filter((c) =>
@@ -14,7 +15,7 @@ const Countries = (props) => {
   }
 
   if (numberOfCountries > 1) {
-    return res.map((country) => <p key={country.name}>{country.name}</p>);
+    return res.map((country) => <Country country={country}></Country>);
   }
 
   if (numberOfCountries === 1) {
