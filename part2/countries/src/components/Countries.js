@@ -1,4 +1,5 @@
 import React from "react";
+import DetailedCountry from "./DetailedCountry";
 
 const Countries = (props) => {
   const res = props.countries.filter((c) =>
@@ -17,20 +18,8 @@ const Countries = (props) => {
   }
 
   if (numberOfCountries === 1) {
-    return res.map((c) => (
-      <>
-        <h1>{c.name}</h1>
-        <p> Capital: {c.capital} </p>
-        <p> Population: {c.population} </p>
-        <h2>Languages</h2>
-        <ul>
-          {c.languages.map((l) => (
-            <li key={l.name}>{l.name}</li>
-          ))}
-        </ul>
-        <img src={c.flag}></img>
-      </>
-    ));
+    const country = res[0];
+    return <DetailedCountry country={country}></DetailedCountry>;
   }
   if (numberOfCountries === 0) {
     return "No matches";
