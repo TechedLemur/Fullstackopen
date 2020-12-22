@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const DetailedCountry = (props) => {
+  const api_key = process.env.REACT_APP_API_KEY;
+
+  const [weather, setWeather] = useState({});
+  const [isBusy, setBusy] = useState(true);
+
+  const params = {
+    access_key: api_key,
+    query: props.country.capital,
+  };
+
+  useEffect(() => {
+    console.log("weather effect");
+    axios
+      .get("http://api.weatherstack.com/current", { params })
+      .then((response) => {
+        console.log("promise fulfilled");
+        setWeather(response.data);
+        setBusy(false);
+      });
+  }, []);
+
   const c = props.country;
   return (
     <>
@@ -13,12 +35,22 @@ const DetailedCountry = (props) => {
           <li key={l.name}>{l.name}</li>
         ))}
       </ul>
-      <img src={c.flag}></img>
+      <img src={c.flag} width="300"></img>
+      {isBusy ? (
+        <p>Waitng for weather data...</p>
+      ) : (
+        <>
+          <h2>Weather in {weather.location.name}</h2>
+          <p>Temperature: {weather.current.temperature} ℃</p>
+          <img src={weather.current.weather_icons[0]}></img>
+          <p>
+            Wind: {weather.current.wind_speed} km/h direction{" "}
+            {weather.current.wind_dir}
+          </p>
+        </>
+      )}
     </>
   );
 };
 
-const Button = ({ handleClick, text }) => (
-  <button onClick={handleClick}>{text}</button>
-);
 export default DetailedCountry;
