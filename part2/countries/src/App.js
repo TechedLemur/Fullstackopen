@@ -1,5 +1,5 @@
-import Filter from "./components/Filter"
-import Countries from "./components/Countries"
+import Filter from "./components/Filter";
+import Countries from "./components/Countries";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -20,7 +20,6 @@ function App() {
     console.log(event.target.value);
     setFilter(event.target.value);
   };
-
 
   return (
     <div>

@@ -43,10 +43,10 @@ const App = (props) => {
         <thead>
           <tr>
             <td>
-              <Button1 handleClick={handleVote} text='Vote'></Button1>
+              <Button1 handleClick={handleVote} text="Vote"></Button1>
             </td>
             <td>
-              <Button1 handleClick={setRandomQuote} text='New quote'></Button1>
+              <Button1 handleClick={setRandomQuote} text="New quote"></Button1>
             </td>
           </tr>
         </thead>
@@ -60,7 +60,7 @@ const App = (props) => {
 };
 
 const Button1 = ({ handleClick, text }) => (
-  <Button variant='contained' color='primary' onClick={handleClick}>
+  <Button variant="contained" color="primary" onClick={handleClick}>
     {text}
   </Button>
 );

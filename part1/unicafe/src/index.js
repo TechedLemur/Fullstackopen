@@ -14,10 +14,10 @@ const App = () => {
 
   return (
     <div>
-      <Header text='Give feedback'></Header>
-      <Button handleClick={goodUp} text='Good'></Button>
-      <Button handleClick={neutralUp} text='Neutral'></Button>
-      <Button handleClick={badUp} text='Bad'></Button>
+      <Header text="Give feedback"></Header>
+      <Button handleClick={goodUp} text="Good"></Button>
+      <Button handleClick={neutralUp} text="Neutral"></Button>
+      <Button handleClick={badUp} text="Bad"></Button>
       <Statistics good={good} bad={bad} neutral={neutral}></Statistics>
     </div>
   );
@@ -35,19 +35,19 @@ const Statistics = ({ good, bad, neutral }) => {
 
   return (
     <table>
-      <Header text='Statistics'></Header>
+      <Header text="Statistics"></Header>
 
-      <Stat name='Good:' value={good}></Stat>
+      <Stat name="Good:" value={good}></Stat>
 
-      <Stat name='Neutral:' value={neutral}></Stat>
+      <Stat name="Neutral:" value={neutral}></Stat>
 
-      <Stat name='Bad:' value={bad}></Stat>
+      <Stat name="Bad:" value={bad}></Stat>
 
-      <Stat name='All:' value={total}></Stat>
+      <Stat name="All:" value={total}></Stat>
 
-      <Stat name='Average:' value={avg}></Stat>
+      <Stat name="Average:" value={avg}></Stat>
 
-      <Stat name='Positive:' value={positive + " %"}></Stat>
+      <Stat name="Positive:" value={positive + " %"}></Stat>
     </table>
   );
 };
@@ -58,7 +58,7 @@ const Header = ({ text }) => {
 
 const Stat = ({ name, value }) => (
   <tr>
-    <th scope='row'>{name}</th>
+    <th scope="row">{name}</th>
     <td>{value}</td>
   </tr>
 );
