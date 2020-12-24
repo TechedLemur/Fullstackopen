@@ -37,6 +37,16 @@ const App = () => {
     }
   };
 
+  const removePerson = (id, name) => {
+    if (window.confirm(`Do you really want to delete ${name}?`)) {
+      console.log(`Deleting ${name} with id ${id}`);
+      personService.remove(id);
+      setPersons(persons.filter((p) => p.id !== id));
+    } else {
+      console.log("Not deleting person");
+    }
+  };
+
   const handleNameChange = (event) => {
     console.log(event.target.value);
     setNewName(event.target.value);
@@ -68,7 +78,11 @@ const App = () => {
 
       <h3>Numbers</h3>
 
-      <Persons filter={filter} persons={persons}></Persons>
+      <Persons
+        filter={filter}
+        removePerson={removePerson}
+        persons={persons}
+      ></Persons>
 
       <div>
         debug: {newName} {filter}
