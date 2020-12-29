@@ -11,24 +11,24 @@
       "id": 2
     },
     {
-      "name": "Dan Abramov",
-      "number": "12-43-234345",
-      "id": 3
-    },
-    {
-      "name": "Mary Poppendieck",
-      "number": "39-23-6423122",
-      "id": 4
-    },
-    {
       "name": "Gandalf",
-      "number": "420-123",
+      "number": "420-23",
       "id": 5
     },
     {
       "name": "Dumbledore",
       "number": "42051-5623",
       "id": 6
+    },
+    {
+      "name": "Darth Vader",
+      "number": "682345222",
+      "id": 7
+    },
+    {
+      "name": "Din Djarin",
+      "number": "52013041",
+      "id": 8
     }
   ]
 }

@@ -4,12 +4,15 @@ import Filter from "./components/Filter";
 import Persons from "./components/Persons";
 import axios from "axios";
 import personService from "./services/persons";
+import Notification from "./components/Notification";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
+  const [infoMessage, setInfoMessage] = useState(null);
+  const [messageStyle, setMessageStyle] = useState("info");
 
   useEffect(() => {
     console.log("effect");
@@ -37,6 +40,13 @@ const App = () => {
         };
         personService.update(id, personObject).then((returnedPerson) => {
           setPersons(persons.map((p) => (p.id !== id ? p : returnedPerson)));
+          setMessageStyle("info");
+          setInfoMessage(
+            `The phone number of ${returnedPerson.name} has been updated`
+          );
+          setTimeout(() => {
+            setInfoMessage(null);
+          }, 5000);
         });
       }
     } else {
@@ -46,6 +56,11 @@ const App = () => {
       };
       personService.create(personObject).then((returnedPerson) => {
         setPersons(persons.concat(returnedPerson));
+        setMessageStyle("info");
+        setInfoMessage(`${returnedPerson.name} has been added`);
+        setTimeout(() => {
+          setInfoMessage(null);
+        }, 5000);
       });
     }
   };
@@ -53,7 +68,13 @@ const App = () => {
   const removePerson = (id, name) => {
     if (window.confirm(`Do you really want to delete ${name}?`)) {
       console.log(`Deleting ${name} with id ${id}`);
-      personService.remove(id);
+      personService.remove(id).catch(() => {
+        setMessageStyle("error");
+        setInfoMessage(`Sorry, ${name} is already deleted from the database`);
+        setTimeout(() => {
+          setInfoMessage(null);
+        }, 5000);
+      });
       setPersons(persons.filter((p) => p.id !== id));
     } else {
       console.log("Not deleting person");
@@ -77,6 +98,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={infoMessage} style={messageStyle}></Notification>
       <Filter filter={filter} handleFilterChange={handleFilterChange}></Filter>
 
       <h3>Add a new</h3>
