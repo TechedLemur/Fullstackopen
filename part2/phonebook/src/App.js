@@ -53,18 +53,21 @@ const App = () => {
         name: newName,
         number: newNumber,
       };
-      personService.create(personObject).then((returnedPerson) => {
-        setPersons(persons.concat(returnedPerson));
-        setMessageStyle("info");
-        setInfoMessage(`${returnedPerson.name} has been added`);
-        setTimeout(() => {
-          setInfoMessage(null);
-        }, 5000);
-      }).catch(error => {
-        setMessageStyle("error");
-        console.log(error.response.data);
-        setInfoMessage(error.response.data.error);
-      });
+      personService
+        .create(personObject)
+        .then((returnedPerson) => {
+          setPersons(persons.concat(returnedPerson));
+          setMessageStyle("info");
+          setInfoMessage(`${returnedPerson.name} has been added`);
+          setTimeout(() => {
+            setInfoMessage(null);
+          }, 5000);
+        })
+        .catch((error) => {
+          setMessageStyle("error");
+          console.log(error.response.data);
+          setInfoMessage(error.response.data.error);
+        });
     }
   };
 
