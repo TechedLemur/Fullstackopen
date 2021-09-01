@@ -65,7 +65,6 @@ const App = () => {
         })
         .catch((error) => {
           setMessageStyle("error");
-          console.log(error.response.data);
           setInfoMessage(error.response.data.error);
         });
     }
